@@ -526,7 +526,7 @@
                         </div>
                     </div>
                     <div class="contact-form-container appear-animation">
-                        <form id="contact-form" class="contact-form">
+                        <form id="contact-form" class="contact-form" action="https://formspree.io/f/xeozrqnr" method="POST">
                             <div class="form-group">
                                 <input type="text" id="name" name="name" placeholder="Your Name" required>
                             </div>
@@ -539,8 +539,47 @@
                             <div class="form-group">
                                 <textarea id="message" name="message" placeholder="Your Message" required></textarea>
                             </div>
-                            <button type="submit" class="btn primary-btn submit-btn">Send Message</button>
+                            <!-- Prevent spam -->
+                            <input type="text" name="_gotcha" style="display:none">
+                            <!-- Format the subject -->
+                            <input type="hidden" name="_subject" value="New Portfolio Contact from hardik5902.github.io">
+                            <!-- Disable redirect and handle with JS -->
+                            <input type="hidden" name="_format" value="json">
+                            <button type="submit" class="btn primary-btn submit-btn" id="submit-btn">Send Message</button>
+                            <div id="form-status" style="margin-top: 15px; text-align: center;"></div>
                         </form>
+                        <script>
+                            const form = document.getElementById('contact-form');
+                            const formStatus = document.getElementById('form-status');
+                            const submitBtn = document.getElementById('submit-btn');
+
+                            form.addEventListener('submit', function(e) {
+                                e.preventDefault();
+                                submitBtn.disabled = true;
+                                submitBtn.textContent = 'Sending...';
+                                formStatus.textContent = '';
+
+                                fetch(this.action, {
+                                    method: 'POST',
+                                    body: new FormData(this),
+                                    headers: {
+                                        'Accept': 'application/json'
+                                    }
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    formStatus.innerHTML = '<div style="color: green; font-weight: 500;">Message sent successfully! I will get back to you soon.</div>';
+                                    form.reset();
+                                    submitBtn.disabled = false;
+                                    submitBtn.textContent = 'Send Message';
+                                })
+                                .catch(error => {
+                                    formStatus.innerHTML = '<div style="color: red; font-weight: 500;">Oops! There was a problem sending your message. Please try again.</div>';
+                                    submitBtn.disabled = false;
+                                    submitBtn.textContent = 'Send Message';
+                                });
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
