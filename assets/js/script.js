@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial check for animations
     checkAppearAnimations();
     setActiveNavLink();
+    
+    // Track resume button clicks
+    trackResumeButtonClicks();
 });
 
 // Handle header scroll effect
@@ -249,5 +252,34 @@ if (heroSection) {
             const scrollPosition = window.scrollY;
             heroSection.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
         }
+    });
+}
+
+// Track resume button clicks with Google Analytics
+function trackResumeButtonClicks() {
+    // Find all resume buttons (links with resume in href or text)
+    const resumeButtons = document.querySelectorAll(
+        'a[href*="drive.google.com"], a[href*="resume"], a[href*="cv"]'
+    );
+    
+    resumeButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            // Send event to Google Analytics
+            if (window.gtag) {
+                gtag('event', 'resume_download', {
+                    'event_category': 'engagement',
+                    'event_label': 'Resume Button Click',
+                    'button_url': this.href,
+                    'timestamp': new Date().toISOString()
+                });
+            }
+            
+            // Optional: Log locally for debugging
+            console.log('Resume button clicked:', {
+                timestamp: new Date().toLocaleString(),
+                url: this.href,
+                userAgent: navigator.userAgent
+            });
+        });
     });
 }
