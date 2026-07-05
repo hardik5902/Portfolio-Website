@@ -6,11 +6,35 @@
     --lavender-dark: #c5c5f1;
     --lavender-light: #f5f5ff;
     --gray: #f0f0f0;
-    --gray-dark: #888888;
+    --gray-dark: #64646f; /* darkened for WCAG contrast on white */
     --shadow: rgba(0, 0, 0, 0.1);
+    --purple: #6c63ff;      /* accent for links */
+    --purple-dark: #4b44cc;
+    --header-bg: rgba(255, 255, 255, 0.98);
+    --footer-bg: #000000;
+    --footer-text: #ffffff;
     --primary-font: 'Poppins', sans-serif;
     --transition: all 0.3s ease;
     --border-radius: 4px;
+    color-scheme: light;
+}
+
+/* ===== DARK THEME ===== */
+[data-theme="dark"] {
+    --black: #e8e8ee;              /* primary text */
+    --white: #16161c;             /* page + card surfaces */
+    --lavender: #6c63ff;          /* vivid accent that reads on dark */
+    --lavender-dark: #8a82ff;
+    --lavender-light: #22222c;    /* alt sections + tag chips */
+    --gray: #34343e;              /* borders */
+    --gray-dark: #b0b0bd;         /* muted text */
+    --shadow: rgba(0, 0, 0, 0.5);
+    --purple: #9a92ff;
+    --purple-dark: #b6afff;
+    --header-bg: rgba(18, 18, 24, 0.95);
+    --footer-bg: #0d0d12;
+    --footer-text: #e8e8ee;
+    color-scheme: dark;
 }
 
 /* ===== BASE ===== */
@@ -190,7 +214,7 @@ h3 {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.98);
+    background-color: var(--header-bg);
     box-shadow: 0 2px 10px var(--shadow);
     padding: 15px 0;
     z-index: 1000;
@@ -203,8 +227,8 @@ h3 {
 
 #header.scrolled {
     padding: 10px 40px;
-    background-color: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    background-color: var(--header-bg);
+    box-shadow: 0 5px 20px var(--shadow);
 }
 
 .logo a {
@@ -810,9 +834,9 @@ nav ul li a.active::after {
 }
 
 .activities-list li {
-    margin-bottom: 10px; /* Add spacing between list items */
-    font-size: 1rem; /* Adjust font size for readability */
-    color: #333; /* Neutral black for text */
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: var(--black);
 }
 .coursework-list {
     list-style-type: disc; /* Default bullet points */
@@ -821,9 +845,9 @@ nav ul li a.active::after {
 }
 
 .coursework-list li {
-    margin-bottom: 10px; /* Add spacing between list items */
-    font-size: 1rem; /* Adjust font size for readability */
-    color: #333; /* Neutral black for text */
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: var(--black);
 }
 .gpa {
     margin-bottom: 5px; /* Add spacing below the GPA section */
@@ -888,11 +912,17 @@ nav ul li a.active::after {
 
 /* ===== EXPERIENCE SECTION ===== */
 .experiences {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     gap: 30px;
-    max-width: 900px;
+    max-width: 940px;
     margin: 0 auto;
+}
+
+@media (min-width: 992px) {
+    .experiences {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .experience-item {
@@ -1202,7 +1232,14 @@ nav ul li a.active::after {
     border-radius: var(--border-radius);
     transition: var(--transition);
     font-family: var(--primary-font);
+    background-color: var(--white);
+    color: var(--black);
     resize: none;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: var(--gray-dark);
 }
 
 .contact-form input:focus,
@@ -1228,8 +1265,8 @@ nav ul li a.active::after {
 
 /* ===== FOOTER ===== */
 footer {
-    background-color: var(--black);
-    color: var(--white);
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
     padding: 50px 0 20px;
 }
 
@@ -1243,7 +1280,7 @@ footer {
 .footer-logo a {
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--white);
+    color: var(--footer-text);
     position: relative;
     z-index: 2;
 }
@@ -1268,7 +1305,7 @@ footer {
 }
 
 .footer-social a {
-    color: var(--white);
+    color: var(--footer-text);
     font-size: 1.5rem;
     transition: var(--transition);
 }
@@ -1389,4 +1426,299 @@ footer {
     .project-date {
         margin: 5px 0 0 0;
     }
+}
+
+/* ===== HEADER ACTIONS + THEME TOGGLE ===== */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.theme-toggle {
+    background-color: transparent;
+    border: 2px solid var(--lavender);
+    color: var(--black);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.theme-toggle:hover {
+    background-color: var(--lavender);
+    transform: translateY(-2px);
+}
+
+.hamburger {
+    outline: none;
+}
+
+.hamburger:focus-visible {
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.4);
+    border-radius: 4px;
+}
+
+/* ===== PROJECT BANNER ===== */
+.project-banner {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--lavender) 0%, var(--lavender-dark) 100%);
+    color: var(--black);
+}
+
+.project-banner i {
+    font-size: 2.4rem;
+    opacity: 0.85;
+}
+
+[data-theme="dark"] .project-banner {
+    color: var(--white);
+}
+
+[data-theme="dark"] .project-banner i {
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .cursor,
+    .cursor-follower {
+        display: none !important;
+    }
+
+    .appear-animation {
+        opacity: 1;
+        transform: none;
+    }
+
+    .typewriter {
+        border-right: none;
+        white-space: normal;
+        animation: none;
+        width: auto;
+    }
+}
+
+/* ===== FORM FEEDBACK MESSAGES ===== */
+.form-success-msg,
+.form-error-msg {
+    padding: 12px 16px;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.form-success-msg {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+[data-theme="dark"] .form-success-msg {
+    background-color: #1b3a1f;
+    color: #81c784;
+    border-color: #2e7d32;
+}
+
+.form-error-msg {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+[data-theme="dark"] .form-error-msg {
+    background-color: #3b1216;
+    color: #ef9a9a;
+    border-color: #c62828;
+}
+
+/* ===== HERO BADGES ===== */
+.hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.badge-apple {
+    background-color: #1c1c1e;
+    color: #f5f5f7;
+}
+
+[data-theme="dark"] .badge-apple {
+    background-color: #3a3a3c;
+    color: #f5f5f7;
+}
+
+.badge-columbia {
+    background-color: #003087;
+    color: #ffffff;
+}
+
+.badge-open {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    animation: pulse-green 2.5s ease infinite;
+}
+
+[data-theme="dark"] .badge-open {
+    background-color: #1a3a22;
+    color: #81c784;
+    border-color: #2e7d32;
+}
+
+.badge-open .fa-circle {
+    font-size: 0.5rem;
+    color: #28a745;
+}
+
+@keyframes pulse-green {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.3); }
+    50%       { box-shadow: 0 0 0 6px rgba(40, 167, 69, 0); }
+}
+
+/* ===== HERO TAGLINE ===== */
+.hero-tagline {
+    font-size: 1rem;
+    color: var(--gray-dark);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* ===== ACHIEVEMENT STRIP ===== */
+.achievement-strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    background: linear-gradient(135deg, var(--lavender-light) 0%, var(--lavender) 100%);
+    padding: 28px 40px;
+    border-top: 1px solid var(--lavender);
+    border-bottom: 1px solid var(--lavender);
+}
+
+[data-theme="dark"] .achievement-strip {
+    background: linear-gradient(135deg, #1e1e28 0%, #26263a 100%);
+    border-color: #3a3a5c;
+}
+
+.achievement-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 32px;
+    text-align: center;
+}
+
+.achievement-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.achievement-label {
+    font-size: 0.78rem;
+    color: var(--gray-dark);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.achievement-divider {
+    width: 1px;
+    height: 40px;
+    background-color: var(--lavender-dark);
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .achievement-strip {
+        gap: 16px;
+        padding: 20px;
+    }
+    .achievement-divider { display: none; }
+    .achievement-item { padding: 8px 16px; }
+    .achievement-number { font-size: 1.4rem; }
+}
+
+/* ===== EXPERIENCE COMPANY ACCENTS ===== */
+.exp-apple   { border-left: 4px solid #555555; }
+.exp-columbia { border-left: 4px solid #003087; }
+.exp-apollo  { border-left: 4px solid #1a5276; }
+
+/* ===== FEATURED PROJECTS ===== */
+.project-featured {
+    border: 2px solid var(--lavender-dark);
+}
+
+[data-theme="dark"] .project-featured {
+    border-color: var(--lavender);
+}
+
+.featured-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    background-color: var(--lavender);
+    color: var(--black);
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+/* ===== CONTACT SECTION CTA ===== */
+.section-subtitle {
+    color: var(--gray-dark);
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+.contact-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 40px;
+    font-size: 1rem;
+    padding: 14px 28px;
+    box-shadow: 0 4px 14px var(--shadow);
+}
+
+.contact-cta:hover {
+    box-shadow: 0 6px 20px var(--shadow);
 }

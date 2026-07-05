@@ -7,115 +7,96 @@ const sections = document.querySelectorAll('.section');
 const backToTop = document.querySelector('.back-to-top');
 const cursor = document.querySelector('.cursor');
 const cursorFollower = document.querySelector('.cursor-follower');
-const appearElements = document.querySelectorAll('.appear-animation');
-const contactForm = document.getElementById('contact-form');
+const themeToggle = document.getElementById('theme-toggle');
 
-// Wait for the DOM to be fully loaded
+// ── Init ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-    // Enable animations after initial load
-    setTimeout(() => {
-        document.body.classList.add('loaded');
-    }, 500);
+    setTimeout(() => document.body.classList.add('loaded'), 500);
 
-    // Initial check for animations
-    checkAppearAnimations();
+    initTheme();
     setActiveNavLink();
-    
-    // Track resume button clicks
+    setFooterYear();
     trackResumeButtonClicks();
 });
 
-// Handle header scroll effect
+// ── Footer year ───────────────────────────────────────────────────────────────
+function setFooterYear() {
+    const el = document.getElementById('footer-year');
+    if (el) el.textContent = new Date().getFullYear();
+}
+
+// ── Header scroll effect ──────────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
-    // Show/hide header background on scroll
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-
-    // Show/hide back to top button
-    if (window.scrollY > 500) {
-        backToTop.classList.add('active');
-    } else {
-        backToTop.classList.remove('active');
-    }
-
-    // Check for elements to animate as they come into view
-    checkAppearAnimations();
-    
-    // Update active navigation link based on scroll position
+    header.classList.toggle('scrolled', window.scrollY > 50);
+    backToTop.classList.toggle('active', window.scrollY > 500);
     setActiveNavLink();
+}, { passive: true });
+
+// ── Mobile menu ───────────────────────────────────────────────────────────────
+hamburger.addEventListener('click', toggleNav);
+hamburger.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleNav(); }
 });
 
-// Mobile menu toggle
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    nav.classList.toggle('active');
-});
+function toggleNav() {
+    const isOpen = hamburger.classList.toggle('active');
+    nav.classList.toggle('active', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+}
 
-// Close mobile menu when clicking a link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         hamburger.classList.remove('active');
         nav.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
     });
 });
 
-// Smooth scroll for navigation links
+// ── Smooth scroll ─────────────────────────────────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
+    anchor.addEventListener('click', function (e) {
         const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-            // Get header height for offset
-            const headerHeight = header.offsetHeight;
-            const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
+        const target = document.querySelector(targetId);
+        if (!target) return;
+        e.preventDefault();
+        const offset = target.getBoundingClientRect().top + window.scrollY - header.offsetHeight;
+        window.scrollTo({ top: offset, behavior: 'smooth' });
     });
 });
 
-// Back to top button functionality
-backToTop.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
+// ── Back to top ───────────────────────────────────────────────────────────────
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-// Custom cursor effects
-if (window.innerWidth > 1024) {
-    document.addEventListener('mousemove', (e) => {
-        // Update cursor position
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        
-        // Update follower with slight delay for effect
-        setTimeout(() => {
-            cursorFollower.style.left = e.clientX + 'px';
-            cursorFollower.style.top = e.clientY + 'px';
-        }, 50);
+// ── Custom cursor (rAF-based, respects reduced-motion) ────────────────────────
+if (window.matchMedia('(pointer: fine)').matches &&
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+    window.innerWidth > 1024) {
+
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+
+    document.addEventListener('mousemove', e => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top  = mouseY + 'px';
     });
 
-    // Add hover effect to interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .btn, .project-card, .experience-item, .skills-category, .certification-card');
-    
-    interactiveElements.forEach(element => {
-        element.addEventListener('mouseenter', () => {
+    (function animateFollower() {
+        followerX += (mouseX - followerX) * 0.18;
+        followerY += (mouseY - followerY) * 0.18;
+        cursorFollower.style.left = followerX + 'px';
+        cursorFollower.style.top  = followerY + 'px';
+        requestAnimationFrame(animateFollower);
+    })();
+
+    document.querySelectorAll('a, button, .btn, .project-card, .experience-item, .skills-category, .certification-card').forEach(el => {
+        el.addEventListener('mouseenter', () => {
             cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
             cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
             cursorFollower.style.backgroundColor = 'rgba(230, 230, 250, 0.2)';
         });
-        
-        element.addEventListener('mouseleave', () => {
+        el.addEventListener('mouseleave', () => {
             cursor.style.transform = 'translate(-50%, -50%) scale(1)';
             cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
             cursorFollower.style.backgroundColor = 'transparent';
@@ -123,163 +104,114 @@ if (window.innerWidth > 1024) {
     });
 }
 
-// Check for elements to animate as they come into view
-function checkAppearAnimations() {
-    appearElements.forEach(element => {
-        // Get element position relative to viewport
-        const elementTop = element.getBoundingClientRect().top;
-        const elementVisible = 150; // Distance from bottom of viewport to trigger animation
-        
-        if (elementTop < window.innerHeight - elementVisible) {
-            element.classList.add('animate');
-        }
-    });
-}
-
-// Set active navigation link based on scroll position
-function setActiveNavLink() {
-    // Get current scroll position
-    let currentPos = window.scrollY;
-    
-    // Check each section and update nav accordingly
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - header.offsetHeight - 10;
-        const sectionBottom = sectionTop + section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (currentPos >= sectionTop && currentPos < sectionBottom) {
-            // Remove active class from all links
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // Add active class to corresponding nav link
-            const activeLink = document.querySelector(`a[href="#${sectionId}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-            }
-        }
-    });
-}
-
-// Form submission handling
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form data
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-        
-        // Here you would normally send data to a server
-        // For demo purposes, we'll just show a success message
-        
-        // Create success message
-        const successMessage = document.createElement('div');
-        successMessage.classList.add('form-success');
-        successMessage.innerHTML = `
-            <div style="background-color: #e6e6fa; padding: 20px; border-radius: 4px; text-align: center; margin-top: 20px;">
-                <h3 style="margin-bottom: 10px;">Message Sent!</h3>
-                <p>Thank you ${name}, your message has been received. I'll get back to you soon.</p>
-            </div>
-        `;
-        
-        // Replace form with success message
-        contactForm.innerHTML = '';
-        contactForm.appendChild(successMessage);
-    });
-}
-
-// Typewriter effect for skills (alternative to CSS animation if needed)
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
-
-// Intersection Observer API for more efficient animations
+// ── Intersection Observer for scroll animations ───────────────────────────────
 if ('IntersectionObserver' in window) {
-    const appearOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -100px 0px"
-    };
-    
-    const appearOnScroll = new IntersectionObserver(
-        (entries, appearOnScroll) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
+    const observer = new IntersectionObserver(
+        entries => entries.forEach(entry => {
+            if (entry.isIntersecting) {
                 entry.target.classList.add('animate');
-                appearOnScroll.unobserve(entry.target);
-            });
-        }, 
-        appearOptions
+                observer.unobserve(entry.target);
+            }
+        }),
+        { threshold: 0.15, rootMargin: '0px 0px -100px 0px' }
     );
-    
-    appearElements.forEach(element => {
-        appearOnScroll.observe(element);
-    });
+    document.querySelectorAll('.appear-animation').forEach(el => observer.observe(el));
 }
 
-// Handle resize events
-window.addEventListener('resize', () => {
-    // Disable custom cursor on mobile/tablet
-    if (window.innerWidth <= 1024) {
-        cursor.style.display = 'none';
-        cursorFollower.style.display = 'none';
-    } else {
-        cursor.style.display = 'block';
-        cursorFollower.style.display = 'block';
-    }
-});
-
-// Add parallax effect to hero section
-const heroSection = document.getElementById('hero');
-if (heroSection) {
-    window.addEventListener('scroll', () => {
-        // Only apply effect if not on mobile
-        if (window.innerWidth > 768) {
-            const scrollPosition = window.scrollY;
-            heroSection.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+// ── Active nav link ───────────────────────────────────────────────────────────
+function setActiveNavLink() {
+    const scrollPos = window.scrollY;
+    sections.forEach(section => {
+        const top    = section.offsetTop - header.offsetHeight - 10;
+        const bottom = top + section.offsetHeight;
+        const id     = section.getAttribute('id');
+        if (scrollPos >= top && scrollPos < bottom) {
+            navLinks.forEach(l => l.classList.remove('active'));
+            const active = document.querySelector(`a[href="#${id}"]`);
+            if (active) active.classList.add('active');
         }
     });
 }
 
-// Track resume button clicks with Google Analytics
+// ── Hero parallax ─────────────────────────────────────────────────────────────
+const heroSection = document.getElementById('hero');
+if (heroSection && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    window.addEventListener('scroll', () => {
+        if (window.innerWidth > 768) {
+            heroSection.style.backgroundPositionY = window.scrollY * 0.5 + 'px';
+        }
+    }, { passive: true });
+}
+
+// ── Dark mode ─────────────────────────────────────────────────────────────────
+function initTheme() {
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(saved ? saved === 'dark' : prefersDark);
+}
+
+function applyTheme(isDark) {
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    if (themeToggle) {
+        themeToggle.querySelector('i').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+}
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        applyTheme(!isDark);
+    });
+}
+
+// ── Contact form ──────────────────────────────────────────────────────────────
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    const formStatus = document.getElementById('form-status');
+    const submitBtn  = document.getElementById('submit-btn');
+
+    contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+        formStatus.textContent = '';
+
+        fetch(this.action, {
+            method: 'POST',
+            body: new FormData(this),
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(res => {
+            if (!res.ok) throw new Error('Network response was not ok');
+            return res.json();
+        })
+        .then(() => {
+            formStatus.innerHTML = '<div class="form-success-msg">Message sent! I\'ll get back to you soon.</div>';
+            contactForm.reset();
+        })
+        .catch(() => {
+            formStatus.innerHTML = '<div class="form-error-msg">Something went wrong. Please try again or email me directly.</div>';
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Message';
+        });
+    });
+}
+
+// ── Resume click tracking ─────────────────────────────────────────────────────
 function trackResumeButtonClicks() {
-    // Find all resume buttons (links with resume in href or text)
-    const resumeButtons = document.querySelectorAll(
-        'a[href*="drive.google.com"], a[href*="resume"], a[href*="cv"]'
-    );
-    
-    resumeButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            // Send event to Google Analytics
+    document.querySelectorAll('a[href*="drive.google.com"], a[href*="resume"], a[href*="cv"]').forEach(btn => {
+        btn.addEventListener('click', function () {
             if (window.gtag) {
                 gtag('event', 'resume_download', {
-                    'event_category': 'engagement',
-                    'event_label': 'Resume Button Click',
-                    'button_url': this.href,
-                    'timestamp': new Date().toISOString()
+                    event_category: 'engagement',
+                    event_label: 'Resume Button Click',
+                    button_url: this.href
                 });
             }
-            
-            // Optional: Log locally for debugging
-            console.log('Resume button clicked:', {
-                timestamp: new Date().toLocaleString(),
-                url: this.href,
-                userAgent: navigator.userAgent
-            });
         });
     });
 }

@@ -3,7 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hardik Gupta - Portfolio</title>
+    <title>Hardik Gupta — Software Engineer & Data Scientist</title>
+    <meta name="description" content="Hardik Gupta — Software Engineer & Data Scientist based in Manhattan, NY. Building scalable software systems, data pipelines, and machine learning solutions.">
+    <meta name="author" content="Hardik Gupta">
+    <meta name="theme-color" content="#e6e6fa">
+
+    <!-- Open Graph / social preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hardik Gupta — Software Engineer & Data Scientist">
+    <meta property="og:description" content="Software Engineer & Data Scientist building scalable systems, data pipelines, and ML solutions.">
+    <meta property="og:url" content="https://hardik5902.github.io/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Hardik Gupta — Software Engineer & Data Scientist">
+    <meta name="twitter:description" content="Software Engineer & Data Scientist building scalable systems, data pipelines, and ML solutions.">
+
+    <!-- Favicon (inline SVG so no extra asset needed) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23e6e6fa'/><text x='50' y='68' font-family='Poppins,sans-serif' font-size='52' font-weight='700' text-anchor='middle' fill='%23000'>HG</text></svg>">
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XT6TE300MY"></script>
     <script>
@@ -25,13 +41,8 @@
         <div class="logo">
             <a href="#hero">HG</a>
         </div>
-        <div class="hamburger">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </div>
         <!-- Navigation -->
-        <nav>
+        <nav id="primary-nav">
             <ul>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#education" class="nav-link">Education</a></li>
@@ -42,6 +53,16 @@
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="hamburger" role="button" tabindex="0" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
     </header>
 
     <main>
@@ -49,19 +70,33 @@
         <section id="hero" class="section">
             <div class="hero-content">
                 <div class="hero-text">
+                    <!-- Current role badges -->
+                    <div class="hero-badges">
+                        <span class="hero-badge badge-apple"><i class="fab fa-apple"></i> Apple</span>
+                        <span class="hero-badge badge-columbia"><i class="fas fa-graduation-cap"></i> Columbia University</span>
+                        <span class="hero-badge badge-open"><i class="fas fa-circle"></i> Open to Full-time 2027</span>
+                    </div>
+
                     <h1>Hi, I'm <span class="highlight">Hardik Gupta</span></h1>
-                    <h2 class="typewriter">Data Scientist & Software Engineer</h2>
+                    <h2 class="typewriter">Software Engineer & Data Scientist</h2>
+
+                    <p class="hero-tagline">
+                        Building agentic AI systems at Apple · MS Data Science at Columbia ·
+                        Ex-Apollo Global Management
+                    </p>
+
                     <div class="hero-contact">
-                        <p>Manhattan, NY | +1 206-832-7990 | <a href="mailto:ghardik5902@gmail.com">ghardik5902@gmail.com</a></p>
+                        <p>Manhattan, NY &nbsp;·&nbsp; <a href="mailto:hg2770@columbia.edu">hg2770@columbia.edu</a> &nbsp;·&nbsp; +1 332-248-5920</p>
                         <div class="social-links">
                             <a href="https://linkedin.com/in/gupta-hardik-s" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                             <a href="https://github.com/hardik5902" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
+
                     <div class="cta-buttons">
-                        <a href="#contact" class="btn primary-btn">Contact Me</a>
-                        <a href="#projects" class="btn secondary-btn">View Projects</a>
-                        <a href="https://drive.google.com/drive/folders/1uj8CEfGa19phj_m6LUIu7ahq_LwfUqtI?usp=sharing" class="btn primary-btn">Resume</a>
+                        <a href="https://linkedin.com/in/gupta-hardik-s" class="btn primary-btn" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> Let's Connect</a>
+                        <a href="https://drive.google.com/drive/folders/1uj8CEfGa19phj_m6LUIu7ahq_LwfUqtI?usp=sharing" class="btn secondary-btn" target="_blank" rel="noopener"><i class="fas fa-file-alt"></i> Resume</a>
+                        <a href="#contact" class="btn secondary-btn"><i class="fas fa-envelope"></i> Contact</a>
                     </div>
                 </div>
             </div>
@@ -77,6 +112,34 @@
             </div>
         </section>
 
+        <!-- Achievement Strip -->
+        <div class="achievement-strip">
+            <div class="achievement-item">
+                <span class="achievement-number">Apple</span>
+                <span class="achievement-label">SWE Intern · Agentic AI</span>
+            </div>
+            <div class="achievement-divider"></div>
+            <div class="achievement-item">
+                <span class="achievement-number">TD Bank</span>
+                <span class="achievement-label">Cross-Channel Fraud Detection</span>
+            </div>
+            <div class="achievement-divider"></div>
+            <div class="achievement-item">
+                <span class="achievement-number">3rd</span>
+                <span class="achievement-label">Hackathon · 200+ Teams</span>
+            </div>
+            <div class="achievement-divider"></div>
+            <div class="achievement-item">
+                <span class="achievement-number">3+</span>
+                <span class="achievement-label">Published Research Papers</span>
+            </div>
+            <div class="achievement-divider"></div>
+            <div class="achievement-item">
+                <span class="achievement-number">Innovator</span>
+                <span class="achievement-label">Award · Apollo Q1 2025</span>
+            </div>
+        </div>
+
         <!-- About Section -->
         <section id="about" class="section">
             <div class="container">
@@ -87,14 +150,14 @@
                 <div class="about-content">
                     <div class="about-text">
                         <p>
-                        I am a passionate data scientist and software engineer with a strong foundation in computer science and a specialization in data science. Currently pursuing my Master’s in Data Science at Columbia University, I focus on applying machine learning techniques like reinforcement learning, computer vision, and natural language processing to solve real-world problems.
+                        I am a software engineer and data scientist with a strong foundation in computer science and a specialization in data science. I enjoy designing scalable software systems and data pipelines — from ETL and cloud infrastructure to containerized, CI/CD-driven workflows — that turn complex data into reliable, production-ready products.
                         </p>
                         <p>
-                         I enjoy designing scalable software systems, transforming complex data into actionable insights, and building impactful AI-driven solutions. I’m equally drawn to the ethical dimensions of AI and strive to create technologies that are not only intelligent but also responsible and trustworthy.   
+                        Currently pursuing my Master’s in Data Science at Columbia University, I apply machine learning techniques like reinforcement learning, computer vision, and NLP to solve real-world problems. I’m equally drawn to the ethical dimensions of AI, striving to build technologies that are not only intelligent but also responsible and trustworthy.
                         </p>
                         <div class="about-stats">
                             <div class="stat">
-                                <h3>2</h3>
+                                <h3>3+</h3>
                                 <p>Years Experience</p>
                             </div>
                             <div class="stat">
@@ -102,8 +165,8 @@
                                 <p>Publications</p>
                             </div>
                             <div class="stat">
-                                <h3>4+</h3>
-                                <p>Certification</p>
+                                <h3>6+</h3>
+                                <p>Certifications</p>
                             </div>
                         </div>
                     </div>
@@ -121,16 +184,16 @@
                 <div class="timeline">
                     <div class="timeline-item left appear-animation">
                         <div class="timeline-content">
-                            <div class="date">Sep 2025 - Mar 2027</div>
+                            <div class="date">Aug 2025 – Dec 2026</div>
                             <h3><a href="https://datascience.columbia.edu/education/programs/m-s-in-data-science/" target="_blank">Columbia University</a></h3>
                             <h4>Master of Science in Data Science</h4>
-                            <p class="gpa"><i class="fas fa-award"></i></p>
+                            <p class="gpa"><i class="fas fa-award"></i><strong> GPA:</strong> 3.5/4.0</p>
                             <div class="coursework-container">
                                 <p><i class="fas fa-book"></i><strong> Coursework</strong></p>
                                 <ul class="coursework-list">
-                                    <li>Data Visualization for Data Scientists</li>
-                                    <li>Software Design for Data Science</li>
-                                    <li>Statistical Machine Learning</li>
+                                    <li>Probability and Statistics</li>
+                                    <li>Machine Learning</li>
+                                    <li>Agentic AI</li>
                                 </ul>
 
                             </div>
@@ -139,26 +202,26 @@
                     </div>
                     <div class="timeline-item right appear-animation">
                         <div class="timeline-content">
-                            <div class="date">Dec 2020 - May 2024</div>
+                            <div class="date">Aug 2020 – Jun 2024</div>
                             <h3><a href="https://www.djsce.ac.in/ug-computer-science-engineering-data-science" target="_blank">University of Mumbai</a></h3>
-                            <h4>B.Tech in CSE - Data Science with Honors in Computational Finance</h4>
+                            <h4>B.Tech in Computer Science – Data Science with Honors in Computational Finance</h4>
                             <p class="gpa"><i class="fas fa-award"></i><strong> GPA:</strong> 3.94/4.0</p>
                             <div class="coursework-container">
                                 <p><i class="fas fa-book"></i><strong> Coursework</strong></p>
                                 <ul class="coursework-list">
-                                    <li>Foundations of Data Analysis</li>
+                                    <li>Linear Algebra</li>
+                                    <li>Data Mining</li>
+                                    <li>Database Systems</li>
                                     <li>Machine Learning</li>
-                                    <li>Database Management</li>
-                                    <li>Cloud Computing</li>
                                 </ul>
 
                             </div>
                             <div class="activities-container">
                                 <p><i class="fas fa-users"></i><strong> Activities</strong></p>
                                 <ul class="activities-list">
-                                    <li>Events Head</span> @ DJS -S4DS</li>
-                                    <li>Treasurer</span> @ DJSCE ACM Student Chapter</li>
-                                    <li>ML Mentor</span> @ DJS Compute</li>
+                                    <li><span class="activity-role">Events Head</span> @ DJS-S4DS</li>
+                                    <li><span class="activity-role">Treasurer</span> @ DJSCE ACM Student Chapter</li>
+                                    <li><span class="activity-role">ML Mentor</span> @ DJS Compute</li>
                                 </ul>
                             </div>
                             <div class="location"><i class="fas fa-map-marker-alt"></i> Mumbai, India</div>
@@ -174,58 +237,76 @@
                     <div class="underline"></div>
                 </div>
                 <div class="experiences">
-                    <div class="experience-item appear-animation">
+                    <div class="experience-item appear-animation exp-apple">
+                        <div class="experience-header">
+                            <div class="experience-company">
+                                <h3>Software Engineering Intern</h3>
+                                <h4>Apple</h4>
+                            </div>
+                            <div class="experience-duration">
+                                <span class="date">May 2026 – Present</span>
+                            </div>
+                        </div>
+                        <div class="experience-content">
+                            <ul>
+                                <li>Architected a dual-mode agentic skill for manufacturing process failure analysis on Apple's internal platform, implementing a multi-turn Deep Dive agent for automated risk assessment report generation, shipped to <b>30+ manufacturing engineers</b>.</li>
+                                <li>Engineered cross-skill context propagation via prompt chaining in Apple's agentic framework to unify design and process into a single agent workflow, eliminating redundant analysis exercises for engineers.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="experience-item appear-animation exp-columbia">
+                        <div class="experience-header">
+                            <div class="experience-company">
+                                <h3>Research Assistant</h3>
+                                <h4>Data, Agents, and Processes Lab — Columbia University</h4>
+                            </div>
+                            <div class="experience-duration">
+                                <span class="date">Nov 2025 – Apr 2026</span>
+                            </div>
+                        </div>
+                        <div class="experience-content">
+                            <ul>
+                                <li>Built a governance pipeline integrating LangChain hooks and AWS Bedrock guardrails for prompt pre-screening, alongside a SQL query rewriter enforcing custom data policies over DuckDB, reducing policy-violating outputs by <b>25%</b>.</li>
+                                <li>Orchestrated end-to-end governance checks across the agent flow (hook + SQL layer), cutting unsafe data-access attempts by <b>30–40%</b> across internal test scenarios.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="experience-item appear-animation exp-apollo">
                         <div class="experience-header">
                             <div class="experience-company">
                                 <h3>Software Analyst</h3>
                                 <h4>Apollo Global Management</h4>
                             </div>
                             <div class="experience-duration">
-                                <span class="date">Jun 2024 - Aug 2025</span>
+                                <span class="date">Jun 2024 – Aug 2025</span>
                             </div>
                         </div>
                         <div class="experience-content">
                             <ul>
-                                <li>Engineered a robust Python-based discrepancy analysis tool to reconcile third-party financial data packs (e.g., from Morgan Stanley and UBS), automating manual validation processes and cutting data ingestion turnaround by <b>10 hours</b> per quarter</li>
-                                <li>Designed and implemented a scalable ETL pipeline to ingest Loopio (DDQ) data from Salesforce into Snowflake, automating opportunity tracking during the due diligence phase and reducing processing overhead by 6 hours weekly.</li>
-                                <li>Refactored and optimized Python scripts powering Tableau dashboards, reducing refresh latency by 45 minutes across 20+ data sources and improving overall reporting efficiency.</li>
+                                <li>Received the <b>Innovator Award in Q1 2025</b> for leading impactful process initiatives within six months of joining.</li>
+                                <li>Integrated a semantic data model with an LLM-powered BI reporting tool (Zenlytics), saving <b>10+ hours weekly</b> and improving SLAs by supporting 15 additional daily user queries.</li>
+                                <li>Built a Python data quality pipeline to reconcile third-party financial data packs (Morgan Stanley, UBS) against internal records, orchestrated via Airflow with automated anomaly flagging; reduced data ingestion turnaround by <b>25%</b> per quarter.</li>
+                                <li>Supported and maintained production data pipelines handling <b>50K record changes per 6-hour refresh cycle</b>, orchestrated via Tidal and transformed through DBT into Snowflake.</li>
                             </ul>
                         </div>
                     </div>
-                    <div class="experience-item appear-animation">
+                    <div class="experience-item appear-animation exp-apollo">
                         <div class="experience-header">
                             <div class="experience-company">
-                                <h3>Data Analysis Intern</h3>
-                                <h4>Scaler by Interviewbit</h4>
-                            </div>
-                            <div class="experience-duration">
-                                <span class="date">Aug 2023 - Jan 2024</span>
-                            </div>
-                        </div>
-                        <div class="experience-content">
-                            <ul>
-                                <li>Analyzed learner enrollment and certification data for data science courses to identify trends and patterns to increase learner's .</li>
-                                <li>Built an ARIMA model to forecast future learner rates, improving accuracy by 10% over existing Excel models, reducing Excel dependency, and enhancing operational efficiency.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="experience-item appear-animation">
-                        <div class="experience-header">
-                            <div class="experience-company">
-                                <h3>Data Engineer Intern</h3>
+                                <h3>Data Engineering Intern</h3>
                                 <h4>Apollo Global Management</h4>
                             </div>
                             <div class="experience-duration">
-                                <span class="date">Jun 2023 - Aug 2024</span>
+                                <span class="date">Jun 2023 – Aug 2023</span>
                             </div>
                         </div>
                         <div class="experience-content">
                             <ul>
-                                <li>Constructed an ETL pipeline utilizing Azure Data Factory (ADF) and DBT to extract fund data, which streamlined data accessibility and saved ~ 2.3k hours across finance and ~2.6 hours across other functions per year in gathering investor data.</li>
-                                <li>Designed a secure Tableau dashboard with row-level security (RLS) and user authentication, protecting sensitive transactional data for over 500 users and decreasing potential data breaches by 95%.</li>
+                                <li>Collaborated with finance and cross-functional teams to construct an ETL pipeline using ADF and DBT, improving fund data accessibility and saving <b>~2.3k hours annually</b> across finance and other teams.</li>
+                                <li>Designed a secure Tableau dashboard with row-level security (RLS) and user authentication, protecting sensitive transactional data for <b>500+ users</b> and decreasing potential data breaches by <b>95%</b>.</li>
                             </ul>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </section>
@@ -241,66 +322,65 @@
                 <div class="skills-container">
                     <div class="skills-category appear-animation">
                         <div class="skills-icon">
-                            <i class="fas fa-code"></i>
+                            <i class="fas fa-database"></i>
                         </div>
-                        <h3>Software Development</h3>
+                        <h3>Data Engineering & Cloud</h3>
                         <ul class="skills-list">
-                            <li>Python</li>
                             <li>SQL</li>
-                            <li>C/C++</li>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>JavaScript</li>
-                            <li>Docker</li>
-                            <li>Flask</li>
-                            <li>Streamlit</li>
+                            <li>Databricks</li>
+                            <li>Snowflake</li>
+                            <li>DBT</li>
+                            <li>Spark</li>
+                            <li>Airflow</li>
+                            <li>AWS (S3, Bedrock)</li>
+                            <li>GCP (ADK, Vertex)</li>
                         </ul>
                     </div>
                     <div class="skills-category appear-animation">
                         <div class="skills-icon">
                             <i class="fas fa-brain"></i>
                         </div>
-                        <h3>Data Science & ML</h3>
+                        <h3>Machine Learning & AI</h3>
                         <ul class="skills-list">
-                            <li>Numpy</li>
-                            <li>Pandas</li>
-                            <li>Tableau</li>
-                            <li>Power BI</li>
+                            <li>Python</li>
+                            <li>PyTorch</li>
+                            <li>PyTorch Geometric</li>
                             <li>TensorFlow</li>
-                            <li>Keras</li>
-                            <li>Scikit-Learn</li>
-                            <li>OpenCV</li>
-                            <li>PySpark</li>
+                            <li>Scikit-learn</li>
+                            <li>XGBoost</li>
+                            <li>LangChain</li>
+                            <li>NLTK</li>
                         </ul>
                     </div>
                     <div class="skills-category appear-animation">
                         <div class="skills-icon">
-                            <i class="fas fa-tools"></i>
+                            <i class="fas fa-chart-bar"></i>
                         </div>
-                        <h3>Data Engineering and Cloud</h3>
+                        <h3>Data Visualization & Analytics</h3>
                         <ul class="skills-list">
+                            <li>Tableau</li>
+                            <li>Plotly</li>
+                            <li>Matplotlib</li>
+                            <li>Pandas</li>
+                            <li>NumPy</li>
+                        </ul>
+                    </div>
+                    <div class="skills-category appear-animation">
+                        <div class="skills-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Software Dev & MLOps</h3>
+                        <ul class="skills-list">
+                            <li>Flask</li>
+                            <li>Streamlit</li>
+                            <li>Docker</li>
+                            <li>Kubernetes</li>
                             <li>Git</li>
-                            <li>GitHub</li>
-                            <li>Azure</li>
-                            <li>ADF</li>
-                            <li>DBT</li>
-                            <li>Snowflake</li>
-                            <li>Alteryx</li>
+                            <li>Linux</li>
+                            <li>CI/CD</li>
                         </ul>
                     </div>
-                    <div class="skills-category appear-animation">
-                        <div class="skills-icon">
-                            <i class="fas fa-user-friends"></i>
-                        </div>
-                        <h3>Soft Skills</h3>
-                        <ul class="skills-list">
-                            <li>Analytical</li>
-                            <li>Approachable</li>
-                            <li>Team Player</li>
-                            <li>Communicative</li>
-                        </ul>
-                    </div>
-                </div> <!-- ✅ This closes skills-container -->
+                </div>
             </div>
         </section>
 
@@ -316,7 +396,50 @@
                     <div class="underline"></div>
                 </div>
                 <div class="projects-grid">
+                    <div class="project-card appear-animation project-featured">
+                        <div class="project-banner"><i class="fas fa-robot"></i></div>
+                        <div class="project-info">
+                            <div class="project-title">
+                                <h3>Self-Improving Medical AI Agent <span class="featured-badge">🏆 3rd Place</span></h3>
+                            </div>
+                            <div class="project-tags">
+                                <span>Gemini Flash</span>
+                                <span>FastAPI</span>
+                                <span>Python</span>
+                                <span>TypeScript</span>
+                            </div>
+                            <div class="project-description">
+                                <ul>
+                                    <li>Secured <b>3rd Place among 200+ participants</b> at the Self-Improving Agents Hackathon by building a multilingual medical AI agent with an 8-stage agentic pipeline for extracting patient symptoms and generating prompt candidates via Gemini.</li>
+                                    <li>Implemented 5 self-improving mechanisms — few-shot memory injection, strategy win-rate evolution, iterative prompt refinement, self-tuning every 5 runs, and a critic feedback loop — improving output consistency by <b>40%</b>.</li>
+                                    <li>Engineered persistent agent memory across runs to bias candidate generation toward historically winning strategies, increasing diagnostic relevance scores by <b>30%</b>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card appear-animation project-featured">
+                        <div class="project-banner"><i class="fas fa-shield-alt"></i></div>
+                        <div class="project-info">
+                            <div class="project-title">
+                                <h3>TD Bank Capstone — Cross-Channel Fraud Detection <span class="featured-badge">97% Acc.</span></h3>
+                            </div>
+                            <div class="project-tags">
+                                <span>PyTorch Geometric</span>
+                                <span>GNN</span>
+                                <span>XGBoost</span>
+                                <span>Python</span>
+                            </div>
+                            <div class="project-description">
+                                <ul>
+                                    <li>Pioneered <b>DeepFraudGNN</b>, a heterogeneous graph neural network leveraging financial transactions (Elliptic), cyber-authentication logs (LANL), and keystroke biometrics, slashing the false positive rate by <b>15%</b> in fraud detection.</li>
+                                    <li>Achieved <b>97% accuracy and 0.58 F1</b> on illicit transactions with only a 10% seed bridge; the model discovered 3,406 hidden illicit nodes via two-hop message passing without direct labels.</li>
+                                    <li>Demonstrated that integrating 64-dim keystroke biometric features improved recall from 85% to <b>88%</b>, validating cross-channel relational inference for fraud ring detection.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <div class="project-card appear-animation">
+                        <div class="project-banner"><i class="fas fa-chart-line"></i></div>
                         <div class="project-info">
                             <div class="project-title">
                                 <h3>Baker Hughes Data Visualization</h3>
@@ -330,39 +453,36 @@
                             <div class="project-description">
                                 <ul>
                                     <li>Engineered an interactive data visualization dashboard for Baker Hughes' Gas Turbine dataset. Integrated EDA via Jupyter and deployed the app on Streamlit to uncover exploratory insights and patterns in turbine performance metrics.</li>
-                                    <li>Securing 2nd Runner-up position among 200 teams in the Datathon hosted by Texas A&M University.</li>
+                                    <li>Secured 2nd Runner-up among 200 teams in the Datathon hosted by Texas A&M University.</li>
                                 </ul>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/hardik5902/BakerHughes-DataViz" class="btn project-btn" target="_blank"><i class="fab fa-github"></i> View Code</a>
+                                <a href="https://github.com/hardik5902/BakerHughes-DataViz" class="btn project-btn" target="_blank" rel="noopener"><i class="fab fa-github"></i> View Code</a>
                             </div>
                         </div>
-
+                    </div>
                     <div class="project-card appear-animation">
+                        <div class="project-banner"><i class="fas fa-apple-alt"></i></div>
                         <div class="project-info">
                             <div class="project-title">
-                                <h3>A System And Method For Evaluating The Freshness Of Fruits Using Machine Learning Techniques</h3>
+                                <h3>Evaluating the Freshness of Fruits Using Machine Learning</h3>
                             </div>
                             <div class="project-tags">
                                 <span>OpenCV</span>
                                 <span>NumPy</span>
                                 <span>SVM</span>
-                                <span>Yolo V5</span>
+                                <span>YOLOv5</span>
                             </div>
                             <div class="project-description">
                                 <ul>
                                     <li>Developed a computer vision-based system evaluating the freshness of fruits using machine learning techniques.</li>
-                                    <li>The system graded the freshness of various fruits with high accuracy. SVM had a classification accuracy of 94% for fresh and non-fresh apples, while Random Forest had a classification accuracy of 68% for several ripeness grading categories.</li>
-                                    <li>For varied levels of ripeness in bananas, KNN achieved 93% accuracy, and for tomatoes, the Random Forest Classifier achieved 89% accuracy.</li>
+                                    <li>SVM reached 94% accuracy for fresh vs. non-fresh apples; KNN reached 93% for banana ripeness and Random Forest 89% for tomatoes.</li>
                                 </ul>
-                            </div>
-                            <div class="project-links">
-                                <a href="#" class="btn project-btn" target="_blank"><i class="fab fa-github"></i> View Code</a>
-                                <a href="#" class="btn project-btn"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                             </div>
                         </div>
                     </div>
                     <div class="project-card appear-animation">
+                        <div class="project-banner"><i class="fas fa-brain"></i></div>
                         <div class="project-info">
                             <div class="project-title">
                                 <h3>ML Analysis of Freezing of Gait in Parkinson's Disease</h3>
@@ -375,34 +495,34 @@
                             </div>
                             <div class="project-description">
                                 <ul>
-                                    <li>Achieved 61.11% precision in freezing event detection by applying  Feature engineering on accelerometer data and implementing LightGBM regression models for pattern recognition.</li>
+                                    <li>Achieved 61.11% precision in freezing-event detection by applying feature engineering on accelerometer data and implementing LightGBM regression models for pattern recognition.</li>
                                 </ul>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/dyutivartak/ML-Projects/blob/main/FOG%20in%20Parkinson's%20Disease%20Using%20LightGBM.ipynb" class="btn project-btn" target="_blank"><i class="fab fa-github"></i> View Code</a>
-                                <a href="https://link.springer.com/chapter/10.1007/978-981-97-7426-5_16" class="btn project-btn" target="_blank"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                                <a href="https://github.com/dyutivartak/ML-Projects/blob/main/FOG%20in%20Parkinson's%20Disease%20Using%20LightGBM.ipynb" class="btn project-btn" target="_blank" rel="noopener"><i class="fab fa-github"></i> View Code</a>
+                                <a href="https://link.springer.com/chapter/10.1007/978-981-97-7426-5_16" class="btn project-btn" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> View Paper</a>
                             </div>
                         </div>
                     </div>
                     <div class="project-card appear-animation">
+                        <div class="project-banner"><i class="fas fa-dove"></i></div>
                         <div class="project-info">
                             <div class="project-title">
                                 <h3>A Deep Learning-Based Method for Categorizing Indian Bird Species</h3>
                             </div>
                             <div class="project-tags">
                                 <span>Python</span>
-                                <span>Deep learning (Tensorflow)</span>
-                                <span>Signal processing</span>
+                                <span>TensorFlow</span>
+                                <span>Signal Processing</span>
                             </div>
                             <div class="project-description">
                                 <ul>
-                                    <li>An automated system is developed for detecting Indian bird species using signal processing and deep learning techniques. The system surpasses the accuracy of prior literature in this domain and holds immense potential for wildlife monitoring and conservation initiatives.</li>
-                                    <li> It utilizes a combination of signal processing techniques and deep learning algorithms to extract and analyze the intricate features of bird vocalizations, effectively distinguishing between different bird species based on their unique acoustic signatures.</li>
+                                    <li>Built an automated system detecting Indian bird species using signal processing and deep learning, surpassing prior literature accuracy with applications in wildlife monitoring and conservation.</li>
+                                    <li>Combined signal-processing feature extraction with deep learning to distinguish species by their unique acoustic signatures.</li>
                                 </ul>
                             </div>
                             <div class="project-links">
-                                <a href="" class="btn project-btn" target="_blank"><i class="fab fa-github"></i> View Code</a>
-                                <a href="https://ieeexplore.ieee.org/document/10307184" class="btn project-btn" target="_blank"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                                <a href="https://ieeexplore.ieee.org/document/10307184" class="btn project-btn" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> View Paper</a>
                             </div>
                         </div>
                     </div>
@@ -484,6 +604,10 @@
                 <div class="section-header">
                     <h2>Get In <span class="highlight">Touch</span></h2>
                     <div class="underline"></div>
+                    <p class="section-subtitle">Open to full-time Software Engineering &amp; Data Science roles starting 2027. Let's talk.</p>
+                    <a href="https://linkedin.com/in/gupta-hardik-s" class="btn primary-btn contact-cta" target="_blank" rel="noopener">
+                        <i class="fab fa-linkedin"></i> Message me on LinkedIn
+                    </a>
                 </div>
                 <div class="contact-content">
                     <div class="contact-info">
@@ -493,7 +617,7 @@
                             </div>
                             <div class="contact-details">
                                 <h3>Email</h3>
-                                <p><a href="mailto:ghardik5902@gmail.com">ghardik5902@gmail.com</a></p>
+                                <p><a href="mailto:hg2770@columbia.edu">hg2770@columbia.edu</a></p>
                             </div>
                         </div>
                         <div class="contact-item appear-animation">
@@ -502,7 +626,7 @@
                             </div>
                             <div class="contact-details">
                                 <h3>Phone</h3>
-                                <p>+1 206-832-7990</p>
+                                <p>+1 332-248-5920 </p>
                             </div>
                         </div>
                         <div class="contact-item appear-animation">
@@ -520,7 +644,7 @@
                             </div>
                             <div class="contact-details">
                                 <h3>LinkedIn</h3>
-                                <p><a href="https://linkedin.com/in/gupta-hardik-s" target="_blank">llinkedin.com/in/gupta-hardik-s</a></p>
+                                <p><a href="https://linkedin.com/in/gupta-hardik-s" target="_blank" rel="noopener">linkedin.com/in/gupta-hardik-s</a></p>
                             </div>
                         </div>
                         <div class="contact-item appear-animation">
@@ -550,44 +674,12 @@
                             <!-- Prevent spam -->
                             <input type="text" name="_gotcha" style="display:none">
                             <!-- Format the subject -->
-                            <input type="hidden" name="_subject" value="New Portfolio Contact from hardik5902.github.io">
+                            <input type="hidden" name="_subject" value="New Portfolio Contact — Hardik Gupta">
                             <!-- Disable redirect and handle with JS -->
                             <input type="hidden" name="_format" value="json">
                             <button type="submit" class="btn primary-btn submit-btn" id="submit-btn">Send Message</button>
                             <div id="form-status" style="margin-top: 15px; text-align: center;"></div>
                         </form>
-                        <script>
-                            const form = document.getElementById('contact-form');
-                            const formStatus = document.getElementById('form-status');
-                            const submitBtn = document.getElementById('submit-btn');
-
-                            form.addEventListener('submit', function(e) {
-                                e.preventDefault();
-                                submitBtn.disabled = true;
-                                submitBtn.textContent = 'Sending...';
-                                formStatus.textContent = '';
-
-                                fetch(this.action, {
-                                    method: 'POST',
-                                    body: new FormData(this),
-                                    headers: {
-                                        'Accept': 'application/json'
-                                    }
-                                })
-                                .then(response => response.json())
-                                .then(data => {
-                                    formStatus.innerHTML = '<div style="color: green; font-weight: 500;">Message sent successfully! I will get back to you soon.</div>';
-                                    form.reset();
-                                    submitBtn.disabled = false;
-                                    submitBtn.textContent = 'Send Message';
-                                })
-                                .catch(error => {
-                                    formStatus.innerHTML = '<div style="color: red; font-weight: 500;">Oops! There was a problem sending your message. Please try again.</div>';
-                                    submitBtn.disabled = false;
-                                    submitBtn.textContent = 'Send Message';
-                                });
-                            });
-                        </script>
                     </div>
                 </div>
             </div>
@@ -606,7 +698,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Hardik Gupta. All rights reserved.</p>
+                <p>&copy; <span id="footer-year">2025</span> Hardik Gupta. All rights reserved.</p>
             </div>
         </div>
     </footer>
